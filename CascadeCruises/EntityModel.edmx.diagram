@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="583ed561dde648c7be44e8bc68f66254" Name="Diagram1">
+        <EntityTypeShape EntityType="Cascade_CruisesModel.Cruise" Width="1.5" PointX="7.125" PointY="3.25" />
+        <EntityTypeShape EntityType="Cascade_CruisesModel.Cruise_Duration" Width="1.5" PointX="3.75" PointY="4.625" />
+        <EntityTypeShape EntityType="Cascade_CruisesModel.Destination" Width="1.5" PointX="4" PointY="2" />
+        <EntityTypeShape EntityType="Cascade_CruisesModel.Passenger" Width="1.5" PointX="9.5" PointY="6.5" />
+        <EntityTypeShape EntityType="Cascade_CruisesModel.Room" Width="1.5" PointX="7.625" PointY="6.875" />
+        <EntityTypeShape EntityType="Cascade_CruisesModel.Ship" Width="1.5" PointX="5.125" PointY="6.875" />
+        <AssociationConnector Association="Cascade_CruisesModel.FK_Cruise_Cruise_Duration" />
+        <AssociationConnector Association="Cascade_CruisesModel.FK_Cruise_Destination" />
+        <AssociationConnector Association="Cascade_CruisesModel.FK_Cruise_Destination1" />
+        <AssociationConnector Association="Cascade_CruisesModel.FK_Cruise_Ship" />
+        <AssociationConnector Association="Cascade_CruisesModel.FK_Passenger_Room" />
+        <AssociationConnector Association="Cascade_CruisesModel.FK_Room_Ship" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

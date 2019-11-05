@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Cascade_CruisesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Cascade_CruisesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cruises" EntityType="Cascade_CruisesModel.Cruise" />
+    <EntitySet Name="Cruise_Duration" EntityType="Cascade_CruisesModel.Cruise_Duration" />
+    <EntitySet Name="Destinations" EntityType="Cascade_CruisesModel.Destination" />
+    <EntitySet Name="Passengers" EntityType="Cascade_CruisesModel.Passenger" />
+    <EntitySet Name="Rooms" EntityType="Cascade_CruisesModel.Room" />
+    <EntitySet Name="Ships" EntityType="Cascade_CruisesModel.Ship" />
+    <AssociationSet Name="FK_Cruise_Cruise_Duration" Association="Cascade_CruisesModel.FK_Cruise_Cruise_Duration">
+      <End Role="Cruise_Duration" EntitySet="Cruise_Duration" />
+      <End Role="Cruise" EntitySet="Cruises" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cruise_Destination" Association="Cascade_CruisesModel.FK_Cruise_Destination">
+      <End Role="Destination" EntitySet="Destinations" />
+      <End Role="Cruise" EntitySet="Cruises" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cruise_Destination1" Association="Cascade_CruisesModel.FK_Cruise_Destination1">
+      <End Role="Destination" EntitySet="Destinations" />
+      <End Role="Cruise" EntitySet="Cruises" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cruise_Ship" Association="Cascade_CruisesModel.FK_Cruise_Ship">
+      <End Role="Ship" EntitySet="Ships" />
+      <End Role="Cruise" EntitySet="Cruises" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Passenger_Room" Association="Cascade_CruisesModel.FK_Passenger_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Passenger" EntitySet="Passengers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Ship" Association="Cascade_CruisesModel.FK_Room_Ship">
+      <End Role="Ship" EntitySet="Ships" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cruise">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Duration_ID" Type="Int32" Nullable="false" />
+    <Property Name="Ship_ID" Type="Int32" Nullable="false" />
+    <Property Name="Start_Destination_ID" Type="Int32" Nullable="false" />
+    <Property Name="End_Destination_ID" Type="Int32" Nullable="false" />
+    <Property Name="Departure_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Cruise_Duration" Relationship="Cascade_CruisesModel.FK_Cruise_Cruise_Duration" FromRole="Cruise" ToRole="Cruise_Duration" />
+    <NavigationProperty Name="Destination" Relationship="Cascade_CruisesModel.FK_Cruise_Destination" FromRole="Cruise" ToRole="Destination" />
+    <NavigationProperty Name="Destination1" Relationship="Cascade_CruisesModel.FK_Cruise_Destination1" FromRole="Cruise" ToRole="Destination" />
+    <NavigationProperty Name="Ship" Relationship="Cascade_CruisesModel.FK_Cruise_Ship" FromRole="Cruise" ToRole="Ship" />
+  </EntityType>
+  <EntityType Name="Cruise_Duration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="Stops" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cruises" Relationship="Cascade_CruisesModel.FK_Cruise_Cruise_Duration" FromRole="Cruise_Duration" ToRole="Cruise" />
+  </EntityType>
+  <EntityType Name="Destination">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cruises" Relationship="Cascade_CruisesModel.FK_Cruise_Destination" FromRole="Destination" ToRole="Cruise" />
+    <NavigationProperty Name="Cruises1" Relationship="Cascade_CruisesModel.FK_Cruise_Destination1" FromRole="Destination" ToRole="Cruise" />
+  </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Room_ID" Type="Int32" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Room" Relationship="Cascade_CruisesModel.FK_Passenger_Room" FromRole="Passenger" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="Class" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="Ship_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Passengers" Relationship="Cascade_CruisesModel.FK_Passenger_Room" FromRole="Room" ToRole="Passenger" />
+    <NavigationProperty Name="Ship" Relationship="Cascade_CruisesModel.FK_Room_Ship" FromRole="Room" ToRole="Ship" />
+  </EntityType>
+  <EntityType Name="Ship">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Registration_Number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cruises" Relationship="Cascade_CruisesModel.FK_Cruise_Ship" FromRole="Ship" ToRole="Cruise" />
+    <NavigationProperty Name="Rooms" Relationship="Cascade_CruisesModel.FK_Room_Ship" FromRole="Ship" ToRole="Room" />
+  </EntityType>
+  <Association Name="FK_Cruise_Cruise_Duration">
+    <End Type="Cascade_CruisesModel.Cruise_Duration" Role="Cruise_Duration" Multiplicity="1" />
+    <End Type="Cascade_CruisesModel.Cruise" Role="Cruise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cruise_Duration">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cruise">
+        <PropertyRef Name="Duration_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cruise_Destination">
+    <End Type="Cascade_CruisesModel.Destination" Role="Destination" Multiplicity="1" />
+    <End Type="Cascade_CruisesModel.Cruise" Role="Cruise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destination">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cruise">
+        <PropertyRef Name="Start_Destination_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cruise_Destination1">
+    <End Type="Cascade_CruisesModel.Destination" Role="Destination" Multiplicity="1" />
+    <End Type="Cascade_CruisesModel.Cruise" Role="Cruise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destination">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cruise">
+        <PropertyRef Name="End_Destination_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cruise_Ship">
+    <End Type="Cascade_CruisesModel.Ship" Role="Ship" Multiplicity="1" />
+    <End Type="Cascade_CruisesModel.Cruise" Role="Cruise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ship">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cruise">
+        <PropertyRef Name="Ship_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Passenger_Room">
+    <End Type="Cascade_CruisesModel.Room" Role="Room" Multiplicity="1" />
+    <End Type="Cascade_CruisesModel.Passenger" Role="Passenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Passenger">
+        <PropertyRef Name="Room_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Ship">
+    <End Type="Cascade_CruisesModel.Ship" Role="Ship" Multiplicity="1" />
+    <End Type="Cascade_CruisesModel.Room" Role="Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ship">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="Ship_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

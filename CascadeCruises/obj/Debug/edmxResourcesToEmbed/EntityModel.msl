@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Cascade_CruisesModelStoreContainer" CdmEntityContainer="Cascade_CruisesEntities">
+    <EntitySetMapping Name="Cruises">
+      <EntityTypeMapping TypeName="Cascade_CruisesModel.Cruise">
+        <MappingFragment StoreEntitySet="Cruise">
+          <ScalarProperty Name="Departure_Date" ColumnName="Departure_Date" />
+          <ScalarProperty Name="End_Destination_ID" ColumnName="End_Destination_ID" />
+          <ScalarProperty Name="Start_Destination_ID" ColumnName="Start_Destination_ID" />
+          <ScalarProperty Name="Ship_ID" ColumnName="Ship_ID" />
+          <ScalarProperty Name="Duration_ID" ColumnName="Duration_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cruise_Duration">
+      <EntityTypeMapping TypeName="Cascade_CruisesModel.Cruise_Duration">
+        <MappingFragment StoreEntitySet="Cruise_Duration">
+          <ScalarProperty Name="Stops" ColumnName="Stops" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Destinations">
+      <EntityTypeMapping TypeName="Cascade_CruisesModel.Destination">
+        <MappingFragment StoreEntitySet="Destination">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Passengers">
+      <EntityTypeMapping TypeName="Cascade_CruisesModel.Passenger">
+        <MappingFragment StoreEntitySet="Passenger">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Room_ID" ColumnName="Room_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="Cascade_CruisesModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="Ship_ID" ColumnName="Ship_ID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ships">
+      <EntityTypeMapping TypeName="Cascade_CruisesModel.Ship">
+        <MappingFragment StoreEntitySet="Ship">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Registration_Number" ColumnName="Registration_Number" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
