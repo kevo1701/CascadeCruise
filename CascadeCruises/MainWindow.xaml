@@ -6,8 +6,45 @@
         xmlns:local="clr-namespace:CascadeCruises"
         xmlns:viewmodels="clr-namespace:CascadeCruises.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Cruise Cascade" Height="450" Width="800">
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <TabControl>
+            <TabItem Header="Ship">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <ListView ItemsSource="{Binding ShipRecords}">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="true">
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
+                                <GridViewColumn Header="Registration Number" DisplayMemberBinding="{Binding Path=Registration_Number}" />
+                                <GridViewColumn Header="Capacity" DisplayMemberBinding="{Binding Path=Capacity}" />
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Cruise">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <ListView ItemsSource="{Binding CruiseRecords}">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="true">
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
+                                <GridViewColumn Header="Duration Days" DisplayMemberBinding="{Binding Path=Cruise_Duration.Duration}" />
+                                <GridViewColumn Header="Stops" DisplayMemberBinding="{Binding Path=Cruise_Duration.Stops}" />
+                                <GridViewColumn Header="Ship Name" DisplayMemberBinding="{Binding Path=Ship.Name}" />
+                                <GridViewColumn Header="Start Destination" DisplayMemberBinding="{Binding Path=Destination.Name}" />
+                                <GridViewColumn Header="End Destination" DisplayMemberBinding="{Binding Path=Destination1.Name}" />
+                                <GridViewColumn Header="Departure Date" DisplayMemberBinding="{Binding Path=Departure_Date}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
     </Grid>
 </Window>
