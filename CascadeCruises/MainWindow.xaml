@@ -17,8 +17,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding CruiseRecords}" SelectedItem="{Binding Path=SearchedCruise}" SelectionChanged="ListView_SelectionChanged">
+                    <ListView Grid.Row="0" ItemsSource="{Binding CruiseRecords}" SelectedItem="{Binding Path=SearchedCruise,Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -37,6 +38,10 @@
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
                         <TextBox x:Name="textboxcID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=CruiseRemoveCommand}">
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Ship">
@@ -44,8 +49,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding ShipRecords}" SelectedItem="{Binding Path=SearchedShip}" SelectionChanged="ListView_SelectionChanged">
+                    <ListView Grid.Row="0" ItemsSource="{Binding ShipRecords}" SelectedItem="{Binding Path=SearchedShip,Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -61,6 +67,10 @@
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
                         <TextBox x:Name="textboxID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=ShipRemoveCommand}">
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Room">
@@ -68,14 +78,16 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding RoomRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedRoom}" SelectionChanged="ListView_SelectionChanged">
+                    <ListView Grid.Row="0" ItemsSource="{Binding RoomRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedRoom,Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
                                 <GridViewColumn Header="Class" DisplayMemberBinding="{Binding Path=Class}" />
                                 <GridViewColumn Header="Capacity" DisplayMemberBinding="{Binding Path=Capacity}" />
                                 <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=Price}" />
+                                <GridViewColumn Header="Ship Name" DisplayMemberBinding="{Binding Path=Ship.Name}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -85,15 +97,20 @@
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
                         <TextBox x:Name="textboxrID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=RoomRemoveCommand}">
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Passenger">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding PassengerRecords}" Grid.ColumnSpan="2"  SelectedItem="{Binding Path=SearchedPassenger}" SelectionChanged="ListView_SelectionChanged">
+                    <ListView Grid.Row="0" ItemsSource="{Binding PassengerRecords}" Grid.ColumnSpan="2"  SelectedItem="{Binding Path=SearchedPassenger,Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -109,6 +126,10 @@
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
                         <TextBox x:Name="textboxpID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=PassengerRemoveCommand}">
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Destination">
@@ -116,8 +137,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding DestinationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedDestination}" SelectionChanged="ListView_SelectionChanged">
+                    <ListView Grid.Row="0" ItemsSource="{Binding DestinationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedDestination,Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -131,6 +153,10 @@
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
                         <TextBox x:Name="textboxdeID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=DestinationRemoveCommand}">
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Cruise_Duration">
@@ -138,8 +164,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding Cruise_DurationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedCruiseDuration}" SelectionChanged="ListView_SelectionChanged">
+                    <ListView Grid.Row="0" ItemsSource="{Binding Cruise_DurationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedCruiseDuration,Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -154,10 +181,12 @@
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
                         <TextBox x:Name="textboxcdID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=CruiseDurationRemoveCommand}">
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>
-
-
     </Grid>
 </Window>
