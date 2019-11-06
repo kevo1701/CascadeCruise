@@ -12,6 +12,23 @@
     </Window.DataContext>
     <Grid>
         <TabControl>
+            <TabItem Header="Cruise">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <ListView ItemsSource="{Binding CruiseRecords}">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="true">
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
+                                <GridViewColumn Header="Duration Days" DisplayMemberBinding="{Binding Path=Cruise_Duration.Duration}" />
+                                <GridViewColumn Header="Stops" DisplayMemberBinding="{Binding Path=Cruise_Duration.Stops}" />
+                                <GridViewColumn Header="Ship Name" DisplayMemberBinding="{Binding Path=Ship.Name}" />
+                                <GridViewColumn Header="Start Destination" DisplayMemberBinding="{Binding Path=Destination.Name}" />
+                                <GridViewColumn Header="End Destination" DisplayMemberBinding="{Binding Path=Destination1.Name}" />
+                                <GridViewColumn Header="Departure Date" DisplayMemberBinding="{Binding Path=Departure_Date}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
             <TabItem Header="Ship">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <ListView ItemsSource="{Binding ShipRecords}">
@@ -26,18 +43,70 @@
                     </ListView>
                 </Grid>
             </TabItem>
-            <TabItem Header="Cruise">
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                    <ListView ItemsSource="{Binding CruiseRecords}">
+            <TabItem Header="Room">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="257*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView ItemsSource="{Binding RoomRecords}" Grid.ColumnSpan="2">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
-                                <GridViewColumn Header="Duration Days" DisplayMemberBinding="{Binding Path=Cruise_Duration.Duration}" />
-                                <GridViewColumn Header="Stops" DisplayMemberBinding="{Binding Path=Cruise_Duration.Stops}" />
-                                <GridViewColumn Header="Ship Name" DisplayMemberBinding="{Binding Path=Ship.Name}" />
-                                <GridViewColumn Header="Start Destination" DisplayMemberBinding="{Binding Path=Destination.Name}" />
-                                <GridViewColumn Header="End Destination" DisplayMemberBinding="{Binding Path=Destination1.Name}" />
-                                <GridViewColumn Header="Departure Date" DisplayMemberBinding="{Binding Path=Departure_Date}" />
+                                <GridViewColumn Header="Class" DisplayMemberBinding="{Binding Path=Class}" />
+                                <GridViewColumn Header="Capacity" DisplayMemberBinding="{Binding Path=Capacity}" />
+                                <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Path=Price}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Passenger">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="257*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView ItemsSource="{Binding PassengerRecords}" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="true">
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
+                                <GridViewColumn Header="Room ID" DisplayMemberBinding="{Binding Path=Room_ID}" />
+                                <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Path=Age}" />
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Destination">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="257*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView ItemsSource="{Binding DestinationRecords}" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="true">
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Cruise_Duration">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="257*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView ItemsSource="{Binding Cruise_DurationRecords}" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="true">
+                                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
+                                <GridViewColumn Header="Duration Days" DisplayMemberBinding="{Binding Path=Duration}" />
+                                <GridViewColumn Header="Stops" DisplayMemberBinding="{Binding Path=Stops}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
