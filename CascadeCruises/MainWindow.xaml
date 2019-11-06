@@ -71,7 +71,7 @@
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
-                                <GridViewColumn Header="Room ID" DisplayMemberBinding="{Binding Path=Room_ID}" />
+                                <GridViewColumn Header="Room Class" DisplayMemberBinding="{Binding Path=Room.Class}" />
                                 <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Path=Age}" />
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
                             </GridView>
