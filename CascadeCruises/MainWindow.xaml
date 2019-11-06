@@ -14,7 +14,11 @@
         <TabControl>
             <TabItem Header="Cruise">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                    <ListView ItemsSource="{Binding CruiseRecords}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding CruiseRecords}" SelectedItem="{Binding Path=SearchedCruise}">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -27,6 +31,12 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=CruiseSearchCommand}"
+                                CommandParameter="{Binding ElementName=textboxcID,Path=Text}"></Button>
+                        <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
+                        <TextBox x:Name="textboxcID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Ship">
@@ -55,11 +65,11 @@
             </TabItem>
             <TabItem Header="Room">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="257*"/>
-                    </Grid.ColumnDefinitions>
-                    <ListView ItemsSource="{Binding RoomRecords}" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding RoomRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedRoom}">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -69,15 +79,21 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=RoomSearchCommand}"
+                                CommandParameter="{Binding ElementName=textboxrID,Path=Text}"></Button>
+                        <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
+                        <TextBox x:Name="textboxrID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Passenger">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="257*"/>
-                    </Grid.ColumnDefinitions>
-                    <ListView ItemsSource="{Binding PassengerRecords}" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding PassengerRecords}" Grid.ColumnSpan="2"  SelectedItem="{Binding Path=SearchedPassenger}">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -87,15 +103,21 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=PassengerSearchCommand}"
+                                CommandParameter="{Binding ElementName=textboxpID,Path=Text}"></Button>
+                        <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
+                        <TextBox x:Name="textboxpID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Destination">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="257*"/>
-                    </Grid.ColumnDefinitions>
-                    <ListView ItemsSource="{Binding DestinationRecords}" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding DestinationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedDestination}">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -103,15 +125,21 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=DestinationSeachCommand}"
+                                CommandParameter="{Binding ElementName=textboxdeID,Path=Text}"></Button>
+                        <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
+                        <TextBox x:Name="textboxdeID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Cruise_Duration">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="257*"/>
-                    </Grid.ColumnDefinitions>
-                    <ListView ItemsSource="{Binding Cruise_DurationRecords}" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding Cruise_DurationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedCruiseDuration}">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -120,6 +148,12 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=CruiseDurationSearchCommand}"
+                                CommandParameter="{Binding ElementName=textboxcdID,Path=Text}"></Button>
+                        <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
+                        <TextBox x:Name="textboxcdID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                    </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>
