@@ -31,7 +31,11 @@
             </TabItem>
             <TabItem Header="Ship">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <ListView ItemsSource="{Binding ShipRecords}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" ItemsSource="{Binding ShipRecords}" SelectedItem="{Binding Path=SearchedShip}">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -41,6 +45,12 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=ShipSearchCommand}"
+                                CommandParameter="{Binding ElementName=textboxID,Path=Text}"></Button>
+                        <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
+                        <TextBox x:Name="textboxID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Room">
