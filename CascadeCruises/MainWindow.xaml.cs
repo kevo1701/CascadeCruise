@@ -24,5 +24,11 @@ namespace CascadeCruises
         {
             InitializeComponent();
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListView lv = (ListView)sender;
+            lv.ScrollIntoView(lv.SelectedItem);
+        }
     }
 }

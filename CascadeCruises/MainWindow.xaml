@@ -18,7 +18,7 @@
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding CruiseRecords}" SelectedItem="{Binding Path=SearchedCruise}">
+                    <ListView Grid.Row="0" ItemsSource="{Binding CruiseRecords}" SelectedItem="{Binding Path=SearchedCruise}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -45,7 +45,7 @@
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding ShipRecords}" SelectedItem="{Binding Path=SearchedShip}">
+                    <ListView Grid.Row="0" ItemsSource="{Binding ShipRecords}" SelectedItem="{Binding Path=SearchedShip}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -69,7 +69,7 @@
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding RoomRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedRoom}">
+                    <ListView Grid.Row="0" ItemsSource="{Binding RoomRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedRoom}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -93,7 +93,7 @@
                     <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding PassengerRecords}" Grid.ColumnSpan="2"  SelectedItem="{Binding Path=SearchedPassenger}">
+                    <ListView Grid.Row="0" ItemsSource="{Binding PassengerRecords}" Grid.ColumnSpan="2"  SelectedItem="{Binding Path=SearchedPassenger}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -117,7 +117,7 @@
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding DestinationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedDestination}">
+                    <ListView Grid.Row="0" ItemsSource="{Binding DestinationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedDestination}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -139,7 +139,7 @@
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding Cruise_DurationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedCruiseDuration}">
+                    <ListView Grid.Row="0" ItemsSource="{Binding Cruise_DurationRecords}" Grid.ColumnSpan="2" SelectedItem="{Binding Path=SearchedCruiseDuration}" SelectionChanged="ListView_SelectionChanged">
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
