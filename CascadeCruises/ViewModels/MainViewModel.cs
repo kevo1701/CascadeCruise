@@ -35,6 +35,12 @@ namespace CascadeCruises.ViewModels
         public DelegateCommand DestinationRemoveCommand { get; set; }
         public DelegateCommand CruiseDurationRemoveCommand { get; set; }
         public DelegateCommand CruiseRemoveCommand { get; set; }
+        public DelegateCommand ShipAddCommand { get; set; }
+        public DelegateCommand PassengerAddCommand { get; set; }
+        public DelegateCommand RoomAddCommand { get; set; }
+        public DelegateCommand DestinationAddCommand { get; set; }
+        public DelegateCommand CruiseDurationAddCommand { get; set; }
+        public DelegateCommand CruiseAddCommand { get; set; }
 
         private Ship _searchedShip;
         private Room _searchedRoom;
@@ -42,6 +48,13 @@ namespace CascadeCruises.ViewModels
         private Destination _searchedDestination;
         private Cruise_Duration _searchedCruiseDuration;
         private Cruise _seachedCruise;
+        private Ship _addedShip = new Ship();
+        private Passenger _addedPassenger = new Passenger();
+        private Room _addedRoom = new Room();
+        private Destination _addedDestination = new Destination();
+        private Cruise_Duration _addedCruiseDuration = new Cruise_Duration();
+        private Cruise _addedCruise = new Cruise();
+        
         public Ship SearchedShip
         {
             get => _searchedShip;
@@ -96,6 +109,61 @@ namespace CascadeCruises.ViewModels
                 INotifyChanged(nameof(SearchedCruise));
             }
         }
+        public Ship AddedShip
+        {
+            get => _addedShip;
+            set
+            {
+                _addedShip = value;
+                INotifyChanged(nameof(AddedShip));
+            }
+        }
+        public Passenger AddedPassenger
+        {
+            get => _addedPassenger;
+            set
+            {
+                _addedPassenger = value;
+                INotifyChanged(nameof(AddedPassenger));
+            }
+        }
+        public Room AddedRoom
+        {
+            get => _addedRoom;
+            set
+            {
+                _addedRoom = value;
+                INotifyChanged(nameof(AddedRoom));
+            }
+        }
+        public Destination AddedDestination
+        {
+            get => _addedDestination;
+            set
+            {
+                _addedDestination = value;
+                INotifyChanged(nameof(AddedDestination));
+            }
+        }
+        public Cruise_Duration AddedCruiseDuration
+        {
+            get => _addedCruiseDuration;
+            set
+            {
+                _addedCruiseDuration = value;
+                INotifyChanged(nameof(AddedCruiseDuration));
+            }
+        }
+        public Cruise AddedCruise
+        {
+            get => _addedCruise;
+            set
+            {
+                _addedCruise = value;
+                INotifyChanged(nameof(AddedCruise));
+            }
+        }
+
         public MainViewModel()
         {
             _dbContext = new Cascade_CruisesEntities();
@@ -121,6 +189,12 @@ namespace CascadeCruises.ViewModels
             DestinationRemoveCommand = new DelegateCommand(DestinationRemove);
             CruiseDurationRemoveCommand = new DelegateCommand(CruiseDurationRemove);
             CruiseRemoveCommand = new DelegateCommand(CruiseRemove);
+            ShipAddCommand = new DelegateCommand(ShipAdd);
+            PassengerAddCommand = new DelegateCommand(PassengerAdd);
+            RoomAddCommand = new DelegateCommand(RoomAdd);
+            DestinationAddCommand = new DelegateCommand(DestinationAdd);
+            CruiseDurationAddCommand = new DelegateCommand(CruiseDurationAdd);
+            CruiseAddCommand = new DelegateCommand(CruiseAdd);
         }
         public void INotifyChanged(string name)
         {
@@ -293,6 +367,126 @@ namespace CascadeCruises.ViewModels
                 CruiseRecords.Remove(SearchedCruise);
                 SearchedCruise = null;
                 _dbContext.SaveChanges();
+            }
+        }
+        public void ShipAdd (object sender)
+        {
+            try
+            {
+                var newShip = new Ship
+                {
+                    Registration_Number = AddedShip.Registration_Number,
+                    Capacity = AddedShip.Capacity,
+                    Name = AddedShip.Name
+                };
+                _dbContext.Ships.Add(newShip);
+                _dbContext.SaveChanges();
+                var newEntity = _dbContext.Ships.FirstOrDefault(s=>s.ID == newShip.ID);
+                ShipRecords.Add(newEntity);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Data");
+            }  
+        }
+        public void PassengerAdd (object sender)
+        {
+            try
+            {
+                var newPassenger = new Passenger
+                {
+                    Room_ID = AddedPassenger.Room_ID,
+                    Age = AddedPassenger.Age,
+                    Name = AddedPassenger.Name
+                };
+                _dbContext.Passengers.Add(newPassenger);
+                _dbContext.SaveChanges();
+                var newEntity = _dbContext.Passengers.FirstOrDefault(s => s.ID == newPassenger.ID);
+                PassengerRecords.Add(newEntity);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Data");
+            }
+        }
+        public void RoomAdd (object sender)
+        {
+            try
+            {
+                var newRoom = new Room
+                {
+                    Capacity = AddedRoom.Capacity,
+                    Class = AddedRoom.Class,
+                    Price = AddedRoom.Price,
+                    Ship_ID = AddedRoom.Ship_ID
+                };
+                _dbContext.Rooms.Add(newRoom);
+                _dbContext.SaveChanges();
+                var newEntity = _dbContext.Rooms.FirstOrDefault(s => s.ID == newRoom.ID);
+                RoomRecords.Add(newEntity);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Data");
+            }
+        }
+        public void DestinationAdd(object sender)
+        {
+            try
+            {
+                var newDestination = new Destination
+                {
+                     Name = AddedDestination.Name
+                };
+                _dbContext.Destinations.Add(newDestination);
+                _dbContext.SaveChanges();
+                var newEntity = _dbContext.Destinations.FirstOrDefault(s => s.ID == newDestination.ID);
+                DestinationRecords.Add(newEntity);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Data");
+            }
+        }
+        public void CruiseDurationAdd (object sender)
+        {
+            try
+            {
+                var newCruiseDuration = new Cruise_Duration
+                {
+                    Duration = AddedCruiseDuration.Duration,
+                    Stops = AddedCruiseDuration.Stops
+                };
+                _dbContext.Cruise_Duration.Add(newCruiseDuration);
+                _dbContext.SaveChanges();
+                var newEntity = _dbContext.Cruise_Duration.FirstOrDefault(s => s.ID == newCruiseDuration.ID);
+                Cruise_DurationRecords.Add(newEntity);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Data");
+            }
+        }
+        public void CruiseAdd(object sender)
+        {
+            try
+            {
+                var newCruise = new Cruise
+                {
+                    Duration_ID = AddedCruise.Duration_ID,
+                    Ship_ID = AddedCruise.Ship_ID,
+                    Start_Destination_ID = AddedCruise.Start_Destination_ID,
+                    End_Destination_ID= AddedCruise.End_Destination_ID,
+                    Departure_Date = AddedCruise.Departure_Date
+                };
+                _dbContext.Cruises.Add(newCruise);
+                _dbContext.SaveChanges();
+                var newEntity = _dbContext.Cruises.FirstOrDefault(s => s.ID == newCruise.ID);
+                CruiseRecords.Add(newEntity);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Data");
             }
         }
     }

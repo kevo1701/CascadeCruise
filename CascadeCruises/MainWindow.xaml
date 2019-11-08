@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CascadeCruises"
         xmlns:viewmodels="clr-namespace:CascadeCruises.ViewModels"
         mc:Ignorable="d"
-        Title="Cruise Cascade" Height="450" Width="800">
+        Title="Cruise Cascade" Height="450" Width="800" WindowState="Maximized">
     <Window.DataContext>
         <viewmodels:MainViewModel/>
     </Window.DataContext>
@@ -18,8 +18,9 @@
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" ItemsSource="{Binding CruiseRecords}" SelectedItem="{Binding Path=SearchedCruise,Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged">
+                    <ListView Grid.Row="0" ItemsSource="{Binding CruiseRecords}" SelectedItem="{Binding Path=SearchedCruise,Mode=TwoWay}" SelectionChanged="ListView_SelectionChanged" >
                         <ListView.View>
                             <GridView AllowsColumnReorder="true">
                                 <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
@@ -36,11 +37,25 @@
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=CruiseSearchCommand}"
                                 CommandParameter="{Binding ElementName=textboxcID,Path=Text}"></Button>
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
-                        <TextBox x:Name="textboxcID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                        <TextBox x:Name="textboxcID" Width="80" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=CruiseRemoveCommand}">
                         </Button>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Add" FontSize="18" Command="{Binding Path=CruiseAddCommand}">
+                        </Button>
+                        <TextBlock Text="Duration ID :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedCruise.Duration_ID,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Ship ID :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedCruise.Ship_ID,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Start Destination ID :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedCruise.Start_Destination_ID,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="End Destination ID :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedCruise.End_Destination_ID,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Departure Date :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedCruise.Departure_Date,Converter={local:ConvertStringToDate},Mode=OneWayToSource}"></TextBox>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -48,6 +63,7 @@
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -65,11 +81,21 @@
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=ShipSearchCommand}"
                                 CommandParameter="{Binding ElementName=textboxID,Path=Text}"></Button>
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
-                        <TextBox x:Name="textboxID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                        <TextBox x:Name="textboxID" Width="80" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=ShipRemoveCommand}">
                         </Button>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Add" FontSize="18" Command="{Binding Path=ShipAddCommand}">
+                        </Button>
+                        <TextBlock Text="Registration Number :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedShip.Registration_Number,Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Capacity :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedShip.Capacity,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Name :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedShip.Name,Mode=OneWayToSource}"></TextBox>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -77,6 +103,7 @@
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -95,11 +122,23 @@
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=RoomSearchCommand}"
                                 CommandParameter="{Binding ElementName=textboxrID,Path=Text}"></Button>
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
-                        <TextBox x:Name="textboxrID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                        <TextBox x:Name="textboxrID" Width="80" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=RoomRemoveCommand}">
                         </Button>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Add" FontSize="18" Command="{Binding Path=RoomAddCommand}">
+                        </Button>
+                        <TextBlock Text="Capacity :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedRoom.Capacity,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Class :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedRoom.Class,Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Price :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedRoom.Price,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Ship ID :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedRoom.Ship_ID,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -107,6 +146,7 @@
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -124,11 +164,21 @@
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=PassengerSearchCommand}"
                                 CommandParameter="{Binding ElementName=textboxpID,Path=Text}"></Button>
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
-                        <TextBox x:Name="textboxpID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                        <TextBox x:Name="textboxpID" Width="80" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=PassengerRemoveCommand}">
                         </Button>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Add" FontSize="18" Command="{Binding Path=PassengerAddCommand}">
+                        </Button>
+                        <TextBlock Text="Room_ID :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedPassenger.Room_ID,Converter={local:ConverterStringToInt}, Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Age :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedPassenger.Age,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Name :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedPassenger.Name,Mode=OneWayToSource}"></TextBox>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -136,6 +186,7 @@
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -157,12 +208,19 @@
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=DestinationRemoveCommand}">
                         </Button>
                     </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Add" FontSize="18" Command="{Binding Path=DestinationAddCommand}">
+                        </Button>
+                        <TextBlock Text="Name :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedDestination.Name,Mode=OneWayToSource}"></TextBox>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Cruise_Duration">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -179,11 +237,19 @@
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Search" FontSize="18" Command="{Binding Path=CruiseDurationSearchCommand}"
                                 CommandParameter="{Binding ElementName=textboxcdID,Path=Text}"></Button>
                         <Label Content="ID : " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></Label>
-                        <TextBox x:Name="textboxcdID" Width="50" Height="30" Margin="5" FontSize="18"></TextBox>
+                        <TextBox x:Name="textboxcdID" Width="80" Height="30" Margin="5" FontSize="18"></TextBox>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Horizontal">
                         <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Remove" FontSize="18" Command="{Binding Path=CruiseDurationRemoveCommand}">
                         </Button>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Height="30" Margin="5" Content="Add" FontSize="18" Command="{Binding Path=CruiseDurationAddCommand}">
+                        </Button>
+                        <TextBlock Text="Duration :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedCruiseDuration.Duration,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
+                        <TextBlock Text="Stops :" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="18"></TextBlock>
+                        <TextBox  Width="80" Height="30" Margin="5" FontSize="18" Text="{Binding Path=AddedCruiseDuration.Stops,Converter={local:ConverterStringToInt},Mode=OneWayToSource}"></TextBox>
                     </StackPanel>
                 </Grid>
             </TabItem>
